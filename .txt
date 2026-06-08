@@ -1,0 +1,82 @@
+TypeScript Backend Setup (Express + Nodemon)
+
+1. Create Project
+   npm init -y
+
+2. Install Express
+   npm install express
+
+3. Install Development Dependencies
+   npm install -D typescript ts-node nodemon @types/node @types/express
+
+4. Initialize TypeScript
+   npx tsc --init
+
+5. Configure tsconfig.json
+
+{
+"compilerOptions": {
+"target": "ES2020",
+"module": "CommonJS",
+"rootDir": "./src",
+"outDir": "./dist",
+"strict": true,
+"esModuleInterop": true,
+"skipLibCheck": true
+}
+}
+
+6. Project Structure
+
+server/
+├── src/
+│   ├── app.ts
+│   └── server.ts
+├── package.json
+└── tsconfig.json
+
+7. app.ts
+
+import express from "express";
+
+const app = express();
+
+app.get("/", (req, res) => {
+res.send("Hello TypeScript Backend");
+});
+
+export default app;
+
+8. server.ts
+
+import app from "./app";
+
+app.listen(3000, () => {
+console.log("Server running on port 3000");
+});
+
+Note: "./app.js" ya "./app.ts" mat likho. Sirf "./app" likho.
+
+9. package.json Script
+
+"scripts": {
+"dev": "nodemon --exec ts-node src/server.ts"
+}
+
+10. Run Server
+
+npm run dev
+
+Output:
+Server running on port 3000
+
+Browser:
+http://localhost:3000
+
+Output:
+Hello TypeScript Backend
+
+Important:
+
+* package.json me "type": "module" na ho.
+* app.ts aur server.ts dono src folder ke andar hone chahiye.
